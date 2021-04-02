@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<diff>
+  <!-- enable debugging
+  
+  <add sel="/aiscript/attention[@min='unknown']/actions/label[@name='start']" pos="after">
+    <do_if value="this.isplayerowned">
+      <set_value name="$debugchance" exact="100" />
+      <set_value name="$debugchance2" exact="100" />
+    </do_if>
+  </add>
+  
+  -->
+
+  <add sel="/aiscript/attention[@min='unknown']/actions/do_if[@value='$homebase.exists and not $homebase.iswreck and not $homebase.isrealclass.ship']/do_if[@value='not $tradeforbuildstorage']/remove_value[@name='$locware']" pos="before">
+    <do_for_each name="$locware" in="$tradewares">
+      <set_value name="$cargo_target" exact="$homebase.cargo.{$locware}.target" />
+      <set_value name="$cargo_count" exact="$homebase.cargo.{$locware}.count" />
+      
+      <do_if value="not $resources_shortage.indexof.{$locware} and $resources.indexof.{$locware} and (this.assignedcontrolled.cargo.{$locware}.max gt 0)">
+        <do_if value="$cargo_count lt ($cargo_target * 0.9)">
+          <append_to_list name="$resources_shortage" exact="$locware"/>
+        </do_if>
+      </do_if>
+    </do_for_each>
+
+    <remove_value name="$cargo_count"/>
+    <remove_value name="$cargo_target"/>
+  </add>
+
+  <remove sel="//do_if[@value='$resources_critical.count']"/>
+</diff>
