@@ -11,4 +11,4 @@ Simply move the content if this repository into a folder in your X4 extensions f
     C:\Steam\steamapps\common\X4 Foundations\extensions\better_station_subordinates\
 ***
 
-Be warned though, that station traders now tend to priorize buying over selling now, and usage in general is at own risk.
+Be warned though, that station traders tend to priorize buying over selling now, and usage in general is at own risk.
